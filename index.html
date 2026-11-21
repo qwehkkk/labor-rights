@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>被裁员怎么办？赔偿金计算 + 劳动仲裁申请书生成 - 维权急救包</title>
+<meta name="description" content="被辞退、被裁员不知道怎么办？在线计算经济补偿（N）、违法解除赔偿金（2N）、代通知金（N+1），一键生成可提交的劳动仲裁申请书 Word 文档和证据清单。结果仅供参考，不构成法律意见。">
+<style>
+  :root {
+    --bg: #f7f8fa;
+    --card: #ffffff;
+    --border: #e5e7eb;
+    --text: #1f2937;
+    --muted: #6b7280;
+    --accent: #2563eb;
+    --accent-light: #eff6ff;
+    --warn-bg: #fffbeb;
+    --warn-border: #f59e0b;
+    --ok: #059669;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+  }
+  .container { max-width: 860px; margin: 0 auto; padding: 16px; }
+  header { background: var(--card); border-bottom: 1px solid var(--border); padding: 20px 16px 14px; }
+  header .container { padding: 0 16px; }
+  h1 { font-size: 22px; margin: 0 0 6px; }
+  .subtitle { color: var(--muted); font-size: 14px; margin: 0; }
+  .disclaimer {
+    background: var(--warn-bg);
+    border: 1px solid var(--warn-border);
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 13px;
+    margin: 14px 0 20px;
+  }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  h2 { font-size: 18px; margin: 0 0 4px; }
+  .card-tip { color: var(--muted); font-size: 13px; margin: 0 0 14px; }
+  label { display: block; font-size: 13px; font-weight: 600; margin: 10px 0 4px; }
+  label .opt { font-weight: 400; color: var(--muted); }
+  input[type="text"], input[type="date"], input[type="number"], input[type="tel"], textarea, select {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 14px;
+    font-family: inherit;
+    background: #fff;
+    color: var(--text);
+  }
+  textarea { resize: vertical; min-height: 60px; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0 14px; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0 14px; }
+  @media (max-width: 640px) { .grid2, .grid3 { grid-template-columns: 1fr; } }
+  .radio-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 6px 0 2px; }
+  .radio-row label.radio {
+    display: inline-flex; align-items: center; gap: 6px;
+    border: 1px solid var(--border); border-radius: 6px;
+    padding: 7px 12px; font-size: 13px; font-weight: 400;
+    cursor: pointer; margin: 0;
+  }
+  .radio-row label.radio:has(input:checked) { border-color: var(--accent); background: var(--accent-light); font-weight: 600; }
+  button {
+    background: var(--accent); color: #fff; border: none;
+    border-radius: 8px; padding: 11px 22px;
+    font-size: 15px; font-weight: 600; cursor: pointer;
+    font-family: inherit;
+  }
+  button:hover { opacity: 0.92; }
+  button.secondary { background: #fff; color: var(--accent); border: 1px solid var(--accent); }
+  .result {
+    background: var(--accent-light);
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin-top: 14px;
+    font-size: 14px;
+    display: none;
+  }
+  .result .big { font-size: 22px; font-weight: 700; color: var(--accent); }
+  .result table { width: 100%; border-collapse: collapse; margin-top: 8px; font-size: 13px; }
+  .result table td, .result table th { padding: 6px 8px; border-bottom: 1px solid #dbeafe; text-align: left; }
+  .result table th { color: var(--muted); font-weight: 600; width: 40%; }
+  .hint { font-size: 12px; color: var(--muted); margin-top: 4px; }
+  .check-item { display: flex; align-items: flex-start; gap: 8px; padding: 6px 0; font-size: 14px; }
+  .check-item input { margin-top: 5px; }
+  .check-item .why { color: var(--muted); font-size: 12px; display: block; }
+  ol.steps { padding-left: 20px; font-size: 14px; margin: 10px 0; }
+  ol.steps li { margin-bottom: 8px; }
+  .btn-row { display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap; }
+  footer { color: var(--muted); font-size: 12px; padding: 20px 16px 40px; text-align: center; }
+  .step-tag {
+    display: inline-block; background: var(--accent); color: #fff;
+    font-size: 11px; border-radius: 10px; padding: 1px 8px; margin-right: 6px;
+  }
+  details { font-size: 14px; margin-top: 8px; }
+  summary { cursor: pointer; font-weight: 600; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <h1>被裁员/被辞退怎么办？</h1>
+    <p class="subtitle">算清你该拿多少钱 · 识破 HR 话术 · 准备好咨询或仲裁 —— 约 70% 的劳动纠纷在谈判桌上解决，先武装自己再上桌。</p>
+  </div>
+</header>
+
+<div class="container">
+
+  <div class="disclaimer">
+    <strong>重要说明：</strong>本工具输出内容仅供参考，不构成法律意见。计算依据《中华人民共和国劳动合同法》第四十条、第四十六条、第四十七条、第八十七条原文规则；最终金额以仲裁裁决或法院判决为准。如情况复杂（如涉及工伤、竞业限制、股权争议），建议咨询执业律师。
+  </div>
+
+  <!-- ============ 第一步：计算 ============ -->
+  <div class="card">
+    <h2><span class="step-tag">第一步</span>算清你能主张多少钱</h2>
+    <p class="card-tip">依据劳动合同法第 47 条：每满一年支付一个月工资；六个月以上不满一年按一年算；不满六个月支付半个月工资。月工资按解除前 12 个月平均应发工资（含奖金、津贴）。</p>
+
+    <div class="grid3">
+      <div>
+        <label>入职日期</label>
+        <input type="date" id="workStart">
+      </div>
+      <div>
+        <label>解除/终止日期</label>
+        <input type="date" id="workEnd">
+      </div>
+      <div>
+        <label>解除前 12 个月平均工资（元/月）</label>
+        <input type="number" id="avgSalary" placeholder="如 12000" min="0">
+      </div>
+    </div>
+
+    <label>解除情形 <span class="opt">（决定你是 N、N+1 还是 2N，务必按实际选）</span></label>
+    <div class="radio-row">
+      <label class="radio"><input type="radio" name="scenario" value="illegal" checked> 被直接辞退，没走法定程序</label>
+      <label class="radio"><input type="radio" name="scenario" value="nofault_no30"> 无过失辞退，且未提前 30 日书面通知</label>
+      <label class="radio"><input type="radio" name="scenario" value="nofault_pre30"> 无过失辞退，已提前 30 日书面通知</label>
+      <label class="radio"><input type="radio" name="scenario" value="mutual"> 协商一致解除（单位提出）</label>
+      <label class="radio"><input type="radio" name="scenario" value="layoff"> 经济性裁员</label>
+      <label class="radio"><input type="radio" name="scenario" value="expiry"> 合同到期，单位不续签</label>
+    </div>
+    <p class="hint">"无过失辞退"指：医疗期满不能从事原工作、不胜任工作经培训或调岗后仍不胜任、客观情况发生重大变化致合同无法履行（劳动合同法第 40 条）。如果你是被"绩效不达标"直接踢群、停卡、停薪——先选第一项"没走法定程序"。</p>
+
+    <label>当地上年度职工月平均工资（元） <span class="opt">选填。填了会自动按"3 倍封顶、年限最高 12 年"规则校验（第 47 条第二款）。可在当地人社局官网查询。</span></label>
+    <input type="number" id="capBase" placeholder="选填，如 10000" min="0">
+
+    <div class="btn-row">
+      <button onclick="calc()">计算</button>
+    </div>
+
+    <div class="result" id="calcResult"></div>
+  </div>
+
+  <!-- ============ 第二步：谈判话术 ============ -->
+  <div class="card">
+    <h2><span class="step-tag">第二步</span>HR 的话术 vs 你的底线</h2>
+    <p class="card-tip">约七成纠纷谈一谈就解决了——前提是你知道自己值多少钱，并且不被话术带偏。以下是最常见的压价话术和对应的法律事实。</p>
+    <details open>
+      <summary>"绩效不达标，公司有权直接辞退且没有补偿"</summary>
+      <p style="font-size:13px; margin:6px 0 0;">以"不胜任工作"解除有法定程序：公司必须先<strong>培训或调岗</strong>，之后仍不能胜任才能解除（劳动合同法第 40 条），且要支付 N。跳过这套程序直接踢人 = 违法解除，标准是 <strong>2N</strong>。要求公司出示考核依据和培训/调岗记录——拿不出来就是 2N。</p>
+    </details>
+    <details>
+      <summary>"签个自愿离职吧，对以后找工作好看"</summary>
+      <p style="font-size:13px; margin:6px 0 0;">"自愿离职" = 你主动辞职 = <strong>一分补偿都没有</strong>。这是最常见的套路。正确做法：拒绝签署任何"个人原因辞职"文件，书面（邮件即可）要求公司出具正式的解除通知并说明理由。</p>
+    </details>
+    <details>
+      <summary>"N+1 已经给到顶了，行业惯例就这样"</summary>
+      <p style="font-size:13px; margin:6px 0 0;">N+1 只适用于"无过失性辞退"（第 40 条）。如果公司没走法定程序、也没有法定事由，法定标准是 <strong>2N</strong>（第 87 条）。"惯例"不是法律，第一步算出来的数字才是你的锚点。</p>
+    </details>
+    <details>
+      <summary>"你不签协议，离职证明就不给你开"</summary>
+      <p style="font-size:13px; margin:6px 0 0;">出具解除/终止劳动合同证明是用人单位的<strong>法定义务</strong>（第 50 条），和签不签协议无关。公司拒开可向劳动监察部门投诉，此举反而坐实了它违法。</p>
+    </details>
+    <details>
+      <summary>"你的工资里已经包含加班费了"</summary>
+      <p style="font-size:13px; margin:6px 0 0;">加班事实的考勤记录<strong>由公司保管</strong>，仲裁中公司拿不出来要承担不利后果。先自己截屏保存打卡记录。另外注意：N 的计算基数是应发工资（含奖金津贴），公司故意按基本工资算基数，属于少算。</p>
+    </details>
+    <details>
+      <summary>"社保按最低基数交，是帮你省税"</summary>
+      <p style="font-size:13px; margin:6px 0 0;">未足额缴纳社保，你可以要求补缴；若公司根本不缴社保，你还可以据此被迫解除劳动合同并主张经济补偿（第 38 条、第 46 条）。把"省税"当挡箭牌是在偷换概念。</p>
+    </details>
+  </div>
+
+  <!-- ============ 第三步：申请书 ============ -->
+  <div class="card">
+    <h2><span class="step-tag">第三步</span>生成《劳动仲裁申请书》（草稿）</h2>
+    <p class="card-tip">谈不拢再走仲裁，这一步才会用上。先在上面完成计算（金额自动带入），再补全双方信息，生成 Word 草稿。<strong>提交前建议请当地法律援助中心（免费）或律师复核一遍</strong>——数据显示劳动者不请律师自己完成仲裁是常态（部分城市无代理比例近半），但文书草稿仍值得让人把关一次。</p>
+
+    <h2 style="font-size:15px; margin-top:6px;">申请人（你）的信息</h2>
+    <div class="grid3">
+      <div><label>姓名</label><input type="text" id="pName"></div>
+      <div><label>性别</label>
+        <select id="pGender"><option value="男">男</option><option value="女">女</option></select>
+      </div>
+      <div><label>出生日期</label><input type="date" id="pBirth"></div>
+    </div>
+    <div class="grid2">
+      <div><label>身份证号</label><input type="text" id="pId"></div>
+      <div><label>联系电话</label><input type="tel" id="pPhone"></div>
+    </div>
+    <label>住址</label>
+    <input type="text" id="pAddress" placeholder="实际居住地址">
+
+    <h2 style="font-size:15px; margin-top:16px;">被申请人（公司）的信息</h2>
+    <div class="grid2">
+      <div><label>公司全称 <span class="opt">以劳动合同或营业执照为准</span></label><input type="text" id="cName"></div>
+      <div><label>统一社会信用代码 <span class="opt">可在"国家企业信用信息公示系统"查询</span></label><input type="text" id="cCredit"></div>
+    </div>
+    <div class="grid2">
+      <div><label>公司住所地</label><input type="text" id="cAddress"></div>
+      <div><label>法定代表人</label><input type="text" id="cLegal"></div>
+    </div>
+
+    <h2 style="font-size:15px; margin-top:16px;">其他仲裁请求 <span style="font-weight:400; font-size:13px; color:var(--muted);">（赔偿金/经济补偿会按第一步结果自动写入，以下按需填写金额）</span></h2>
+    <div class="grid3">
+      <div><label>拖欠工资（元）</label><input type="number" id="claimWage" placeholder="选填" min="0"></div>
+      <div><label>未休年休假工资（元）</label><input type="number" id="claimLeave" placeholder="选填" min="0"></div>
+      <div><label>加班费（元）</label><input type="number" id="claimOvertime" placeholder="选填" min="0"></div>
+    </div>
+
+    <label>补充事实 <span class="opt">选填。写清关键经过：何时被通知、以什么理由、公司做了什么（停卡/踢群/停薪等）</span></label>
+    <textarea id="extraFacts" placeholder="例：2026年11月10日，部门主管在微信口头通知我被裁，当日取消我的打卡权限并将我移出工作群，未出具任何书面通知……"></textarea>
+
+    <div class="btn-row">
+      <button onclick="generateDoc()">下载仲裁申请书（Word）</button>
+      <button class="secondary" onclick="previewDoc()">先预览</button>
+    </div>
+    <div class="result" id="docResult" style="display:none; margin-top:14px;">
+      <pre id="docPreview" style="white-space:pre-wrap; font-family:inherit; font-size:13px; margin:0;"></pre>
+    </div>
+  </div>
+
+  <!-- ============ 第三步：证据清单 ============ -->
+  <div class="card">
+    <h2><span class="step-tag">第四步</span>按清单固定证据（今天就做）</h2>
+    <p class="card-tip">证据在离职当天最容易收集，越晚越难。以下是仲裁中最常被要求提供的材料，逐项核对并保存副本（截图 + 导出原件）。</p>
+    <div id="evidenceList"></div>
+    <div class="btn-row">
+      <button class="secondary" onclick="downloadEvidence()">下载证据清单（Word）</button>
+    </div>
+  </div>
+
+  <!-- ============ 咨询摘要 ============ -->
+  <div class="card">
+    <h2><span class="step-tag">第五步</span>带去咨询：一页纸案情摘要</h2>
+    <p class="card-tip">无论后续是找律师、去法律援助中心（免费）还是工会咨询，对方第一句都是"你什么情况？"。把上面几步的结果打成一张纸，15 分钟就能把案情说清楚，省下的都是你的咨询成本。勾选过的证据会自动列入。</p>
+    <div class="btn-row">
+      <button class="secondary" onclick="generateBrief()">下载案情摘要（Word）</button>
+    </div>
+  </div>
+
+  <!-- ============ 时间线 ============ -->
+  <div class="card">
+    <h2>被裁第 1 天该做的 5 件事</h2>
+    <ol class="steps">
+      <li><strong>不要签任何"自愿离职""协商解除"文件</strong>——签了基本就拿不到 2N。公司口头承诺"签了才有补偿"是常见话术，先拍照存证再说。</li>
+      <li><strong>固定电子证据</strong>：聊天记录、邮件、打卡记录截图并录屏，导出工资流水（银行 App 可导出 12 个月）。公司随时会关权限。</li>
+      <li><strong>继续正常出勤</strong>（如果还能进公司）。进不去就用书面/邮件要求公司安排工作，制造"公司拒绝提供劳动条件"的记录。</li>
+      <li><strong>书面要求公司出具解除通知</strong>：发邮件给 HR 和直属领导，写明"请公司出具书面解除劳动合同通知并说明理由"。拒不出具本身就是对你有利的证据。</li>
+      <li><strong>记住两个期限</strong>：劳动仲裁时效为自知道权利被侵害之日起 <strong>1 年</strong>；对仲裁裁决不服的，收到裁决书 <strong>15 日内</strong>可向法院起诉。不要拖。</li>
+    </ol>
+    <details>
+      <summary>去哪里提交仲裁申请？</summary>
+      <p style="font-size:13px; color:var(--muted);">向劳动合同履行地（实际工作地）或用人单位所在地的<strong>劳动人事争议仲裁委员会</strong>提交，一般在当地人社局。多数省市已开通线上申请（如广东"粤省事"、各地人社局官网），搜索"你所在城市 + 劳动仲裁 在线申请"。仲裁不收费。</p>
+    </details>
+  </div>
+
+  <footer>
+    劳动维权急救包 · 计算与文书仅供生成草稿使用，不构成法律意见，最终结果以仲裁裁决、法院判决为准 · 劳动仲裁不收费，请勿委托任何"收费代办立案"的中介
+  </footer>
+</div>
+
+<script>
+// ---------- 工具函数 ----------
+function fmt(n) {
+  if (n === null || isNaN(n)) return '—';
+  return '¥' + Number(n).toLocaleString('zh-CN', {maximumFractionDigits: 2});
+}
+function fmtDate(s) {
+  if (!s) return '____年__月__日';
+  const d = new Date(s + 'T00:00:00');
+  return d.getFullYear() + '年' + (d.getMonth()+1) + '月' + d.getDate() + '日';
+}
+
+// 计算经济补偿月数：满1年=1个月，满6个月不满1年=1个月，不满6个月=0.5个月
+function compMonths(startStr, endStr) {
+  if (!startStr || !endStr) return null;
+  const start = new Date(startStr + 'T00:00:00');
+  const end = new Date(endStr + 'T00:00:00');
+  if (end <= start) return null;
+  let years = end.getFullYear() - start.getFullYear();
+  let months = end.getMonth() - start.getMonth();
+  let days = end.getDate() - start.getDate();
+  if (days < 0) { months -= 1; days += 30; }
+  let totalMonths = years * 12 + months;
+  let n = Math.floor(totalMonths / 12);           // 完整年数
+  let rest = totalMonths % 12;                     // 剩余月数
+  let extra = 0;
+  if (rest >= 6) extra = 1;
+  else if (rest >= 1) extra = 0.5;
+  return { months: n + extra, years: n, rest: rest, extra: extra, days: days };
+}
+
+const SCENARIOS = {
+  illegal:      { label: '违法解除（未按法定程序辞退）', type: '2N', claim: '违法解除劳动合同赔偿金' },
+  nofault_no30: { label: '无过失辞退且未提前30日通知', type: 'N+1', claim: '解除劳动合同经济补偿金及代通知金' },
+  nofault_pre30:{ label: '无过失辞退（已提前30日通知）', type: 'N', claim: '解除劳动合同经济补偿金' },
+  mutual:       { label: '协商一致解除（单位提出）', type: 'N', claim: '解除劳动合同经济补偿金' },
+  layoff:       { label: '经济性裁员', type: 'N', claim: '解除劳动合同经济补偿金' },
+  expiry:       { label: '合同期满单位不续签', type: 'N', claim: '终止劳动合同经济补偿金' }
+};
+
+let lastCalc = null;
+
+function calc() {
+  const startStr = document.getElementById('workStart').value;
+  const endStr = document.getElementById('workEnd').value;
+  const salary = parseFloat(document.getElementById('avgSalary').value);
+  const capBase = parseFloat(document.getElementById('capBase').value);
+  const scenario = document.querySelector('input[name="scenario"]:checked').value;
+  const box = document.getElementById('calcResult');
+
+  if (!startStr || !endStr || !salary || salary <= 0) {
+    box.style.display = 'block';
+    box.innerHTML = '<strong style="color:#b45309">请先填写入职日期、解除日期和平均工资。</strong>';
+    return;
+  }
+  const c = compMonths(startStr, endStr);
+  if (!c) {
+    box.style.display = 'block';
+    box.innerHTML = '<strong style="color:#b45309">解除日期需晚于入职日期。</strong>';
+    return;
+  }
+
+  let base = salary;
+  let nMonths = c.months;
+  let capped = false;
+  if (capBase && salary > capBase * 3) {
+    base = capBase * 3;
+    capped = true;
+    if (nMonths > 12) { nMonths = 12; }
+  }
+  const nAmount = base * nMonths;
+  const s = SCENARIOS[scenario];
+  let rows = [];
+  let headline;
+  if (s.type === '2N') {
+    headline = 2 * nAmount;
+    rows.push(['工作年限折算', c.years + '年' + c.rest + '个月 → 按 ' + nMonths + ' 个月计算']);
+    rows.push(['经济补偿基数（月平均工资）', fmt(base) + (capped ? '（高于当地月平均工资3倍，已按第47条封顶）' : '')]);
+    rows.push(['经济补偿标准（N）', nMonths + ' × ' + fmt(base) + ' = ' + fmt(nAmount)]);
+    rows.push(['违法解除赔偿金（2N = 经济补偿标准 × 2）', '<span class="big">' + fmt(headline) + '</span>']);
+    rows.push(['法律依据', '《劳动合同法》第87条、第47条']);
+  } else if (s.type === 'N+1') {
+    headline = nAmount + base;
+    rows.push(['工作年限折算', c.years + '年' + c.rest + '个月 → 按 ' + nMonths + ' 个月计算']);
+    rows.push(['经济补偿基数（月平均工资）', fmt(base) + (capped ? '（高于当地月平均工资3倍，已按第47条封顶）' : '')]);
+    rows.push(['经济补偿金（N）', nMonths + ' × ' + fmt(base) + ' = ' + fmt(nAmount)]);
+    rows.push(['代通知金（+1，未提前30日通知）', fmt(base)]);
+    rows.push(['合计（N+1）', '<span class="big">' + fmt(headline) + '</span>']);
+    rows.push(['法律依据', '《劳动合同法》第40条、第46条、第47条']);
+  } else {
+    headline = nAmount;
+    rows.push(['工作年限折算', c.years + '年' + c.rest + '个月 → 按 ' + nMonths + ' 个月计算']);
+    rows.push(['经济补偿基数（月平均工资）', fmt(base) + (capped ? '（高于当地月平均工资3倍，已按第47条封顶）' : '')]);
+    rows.push(['经济补偿金（N）', '<span class="big">' + fmt(headline) + '</span>']);
+    rows.push(['法律依据', '《劳动合同法》第46条、第47条']);
+  }
+
+  lastCalc = { scenario: scenario, months: nMonths, base: base, n: nAmount, total: headline, capped: capped, yearsText: c.years + '年' + c.rest + '个月' };
+
+  box.style.display = 'block';
+  box.innerHTML = '<div>按「' + s.label + '」情形，你可主张：</div>' +
+    '<div class="big" style="margin:6px 0;">' + fmt(headline) + '</div>' +
+    '<table>' + rows.map(r => '<tr><th>' + r[0] + '</th><td>' + r[1] + '</td></tr>').join('') + '</table>' +
+    '<p class="hint">注意：2N（违法解除）与 N+1（无过失解除）不能同时主张；公司提出协商解除的，法定底线是 N，可以此为谈判起点。</p>';
+}
+
+// ---------- 证据清单 ----------
+const EVIDENCE = [
+  ['劳动合同原件', '证明劳动关系和约定工资，没有签合同的反而可主张二倍工资差额（第82条）'],
+  ['解除/终止的通知或证明', '书面通知、邮件、HR 微信记录；公司拒绝出具的要留下书面索要记录'],
+  ['解除前 12 个月工资银行流水', '银行 App 导出带公章版本最好；确定第 47 条"平均工资"基数'],
+  ['考勤/打卡记录截图', '被取消打卡权限前先截屏录屏；证明工作时间与在岗事实'],
+  ['工作群移出/系统权限关闭记录', '截屏 + 录屏 + 拍手机屏幕，时间显示清晰'],
+  ['社保/公积金缴费记录', '社保 App 或当地人社官网查询导出，证明在职期间'],
+  ['工牌、工服、名片、工作邮件往来', '辅助证明劳动关系的备用材料'],
+  ['与主管/HR 沟通的录音', '当面沟通可录音，属于合法取证；保存原始文件不要剪辑'],
+  ['工资条、绩效记录、调岗/降薪通知', '若涉及不胜任解除，公司需举证培训或调岗程序']
+];
+function renderEvidence() {
+  const el = document.getElementById('evidenceList');
+  el.innerHTML = EVIDENCE.map((e, i) =>
+    '<div class="check-item"><input type="checkbox" id="ev' + i + '">' +
+    '<label for="ev' + i + '" style="margin:0; font-weight:600; display:inline;">' + e[0] + '</label>' +
+    '<span class="why">' + e[1] + '</span></div>').join('');
+}
+renderEvidence();
+
+function downloadEvidence() {
+  const html = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word">' +
+    '<head><meta charset="utf-8"><style>body{font-family:SimSun,serif;font-size:12pt;line-height:1.8;} h2{text-align:center;font-size:16pt;} li{margin-bottom:8pt;}</style></head><body>' +
+    '<h2>劳动仲裁证据清单（核对用）</h2>' +
+    '<ol>' + EVIDENCE.map(e => '<li><strong>' + e[0] + '</strong> — ' + e[1] + '</li>').join('') + '</ol>' +
+    '<p style="font-size:10pt;color:#666;">本清单仅供整理证据参考，不构成法律意见。具体举证要求以受理仲裁委通知为准。</p>' +
+    '</body></html>';
+  downloadWord(html, '劳动仲裁证据清单.doc');
+}
+
+// ---------- 仲裁申请书生成 ----------
+function readVal(id) { return (document.getElementById(id).value || '').trim(); }
+function readNum(id) {
+  const v = parseFloat(document.getElementById(id).value);
+  return (v && v > 0) ? v : null;
+}
+
+function buildFacts() {
+  const scenario = lastCalc ? lastCalc.scenario : document.querySelector('input[name="scenario"]:checked').value;
+  const start = fmtDate(document.getElementById('workStart').value);
+  const end = fmtDate(document.getElementById('workEnd').value);
+  const salary = document.getElementById('avgSalary').value;
+  const extra = readVal('extraFacts');
+  let t = '';
+  t += '申请人于' + start + '入职被申请人处工作，解除劳动合同前十二个月的平均工资为人民币' + salary + '元/月。' ;
+  if (scenario === 'illegal') {
+    t += end + '，被申请人在不具备法定解除事由、未履行法定程序的情况下，单方解除与申请人的劳动合同，且未向申请人支付任何经济补偿。';
+    t += '申请人认为，被申请人的行为已构成违法解除劳动合同。根据《中华人民共和国劳动合同法》第八十七条："用人单位违反本法规定解除或者终止劳动合同的，应当依照本法第四十七条规定的经济补偿标准的二倍向劳动者支付赔偿金。"及第四十七条关于经济补偿计算标准的规定，被申请人应向申请人支付违法解除劳动合同赔偿金。';
+  } else if (scenario === 'nofault_no30') {
+    t += end + '，被申请人依据《中华人民共和国劳动合同法》第四十条解除与申请人的劳动合同，但未提前三十日以书面形式通知申请人本人。';
+    t += '根据《劳动合同法》第四十条、第四十六条、第四十七条的规定，被申请人应向申请人支付解除劳动合同经济补偿金；因未提前三十日书面通知，还应额外支付一个月工资作为代通知金。';
+  } else if (scenario === 'nofault_pre30') {
+    t += end + '，被申请人提前三十日以书面形式通知申请人解除劳动合同（无过失性辞退）。根据《劳动合同法》第四十条、第四十六条、第四十七条的规定，被申请人应向申请人支付解除劳动合同经济补偿金。';
+  } else if (scenario === 'mutual') {
+    t += end + '，经被申请人提出，双方协商一致解除劳动合同。根据《劳动合同法》第三十六条、第四十六条第（二）项、第四十七条的规定，被申请人应向申请人支付解除劳动合同经济补偿金。';
+  } else if (scenario === 'layoff') {
+    t += end + '，被申请人以经济性裁员为由解除与申请人的劳动合同。根据《劳动合同法》第四十一条、第四十六条、第四十七条的规定，被申请人应向申请人支付解除劳动合同经济补偿金。';
+  } else {
+    t += end + '，双方劳动合同期满，被申请人决定不再续签。根据《劳动合同法》第四十四条第（一）项、第四十六条第（五）项、第四十七条的规定，被申请人应向申请人支付终止劳动合同经济补偿金。';
+  }
+  if (extra) t += '\n\n此外：' + extra;
+  return t;
+}
+
+function buildRequests() {
+  const s = SCENARIOS[lastCalc ? lastCalc.scenario : 'illegal'];
+  let items = [];
+  let totalText = '';
+  if (lastCalc) {
+    if (s.type === '2N') {
+      items.push('1．裁决被申请人向申请人支付违法解除劳动合同赔偿金人民币' + fmt(lastCalc.total).replace('¥','') + '元（解除前十二个月平均工资' + lastCalc.base + '元/月 × 经济补偿标准' + lastCalc.months + '个月 × 2）；');
+    } else if (s.type === 'N+1') {
+      items.push('1．裁决被申请人向申请人支付解除劳动合同经济补偿金人民币' + (lastCalc.base*lastCalc.months).toLocaleString('zh-CN') + '元及代通知金人民币' + lastCalc.base.toLocaleString('zh-CN') + '元（合计' + lastCalc.total.toLocaleString('zh-CN') + '元）；');
+    } else {
+      items.push('1．裁决被申请人向申请人支付解除劳动合同经济补偿金人民币' + lastCalc.total.toLocaleString('zh-CN') + '元（解除前十二个月平均工资' + lastCalc.base + '元/月 × ' + lastCalc.months + '个月）；');
+    }
+  } else {
+    items.push('1．裁决被申请人向申请人支付' + s.claim + '人民币＿＿＿＿元（金额见第一步计算结果）；');
+  }
+  let idx = 2;
+  const wage = readNum('claimWage');
+  if (wage) items.push(idx + '．裁决被申请人向申请人支付拖欠工资人民币' + wage.toLocaleString('zh-CN') + '元；'), idx++;
+  const leave = readNum('claimLeave');
+  if (leave) items.push(idx + '．裁决被申请人向申请人支付未休年休假工资报酬人民币' + leave.toLocaleString('zh-CN') + '元；'), idx++;
+  const ot = readNum('claimOvertime');
+  if (ot) items.push(idx + '．裁决被申请人向申请人支付加班费人民币' + ot.toLocaleString('zh-CN') + '元；'), idx++;
+  items.push(idx + '．裁决被申请人为申请人出具解除/终止劳动合同证明，并办理社会保险关系转移手续。');
+  return items.join('\n');
+}
+
+function buildDocHtml() {
+  const pName = readVal('pName') || '＿＿＿';
+  const pGender = document.getElementById('pGender').value;
+  const pBirth = fmtDate(document.getElementById('pBirth').value);
+  const pId = readVal('pId') || '＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿';
+  const pAddr = readVal('pAddress') || '＿＿＿＿＿＿＿＿';
+  const pPhone = readVal('pPhone') || '＿＿＿＿＿＿';
+  const cName = readVal('cName') || '＿＿＿公司';
+  const cCredit = readVal('cCredit') || '＿＿＿＿＿＿＿＿';
+  const cAddr = readVal('cAddress') || '＿＿＿＿＿＿＿＿';
+  const cLegal = readVal('cLegal') || '＿＿＿';
+  const today = fmtDate(new Date().toISOString().slice(0,10));
+
+  return '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word">' +
+  '<head><meta charset="utf-8"><style>' +
+  'body{font-family:SimSun,serif;font-size:12pt;line-height:1.9;margin:2.5cm;}' +
+  'h1{text-align:center;font-size:16pt;font-family:SimHei,serif;margin-bottom:6pt;}' +
+  '.sec{font-family:SimHei,serif;font-weight:bold;}' +
+  '.indent{text-indent:2em;}' +
+  '</style></head><body>' +
+  '<h1>劳动仲裁申请书</h1>' +
+  '<p class="sec">申请人：</p>' +
+  '<p class="indent">' + pName + '，' + pGender + '，' + pBirth + '出生，公民身份号码：' + pId + '，住址：' + pAddr + '，联系电话：' + pPhone + '。</p>' +
+  '<p class="sec">被申请人：</p>' +
+  '<p class="indent">' + cName + '，统一社会信用代码：' + cCredit + '，住所地：' + cAddr + '，法定代表人：' + cLegal + '。</p>' +
+  '<p class="sec">仲裁请求：</p>' +
+  '<p style="white-space:pre-line;" class="indent">' + buildRequests() + '</p>' +
+  '<p class="sec">事实与理由：</p>' +
+  '<p class="indent" style="white-space:pre-line;">' + buildFacts() + '</p>' +
+  '<p class="indent">综上，为维护申请人的合法权益，依据《中华人民共和国劳动争议调解仲裁法》之相关规定，特向贵委提出仲裁申请，请求依法裁决。</p>' +
+  '<p class="sec">此致</p>' +
+  '<p class="indent">＿＿＿＿＿＿劳动人事争议仲裁委员会</p>' +
+  '<p style="text-align:right;">申请人（签名）：＿＿＿＿＿＿</p>' +
+  '<p style="text-align:right;">' + today + '</p>' +
+  '<p style="font-size:10pt;color:#666;margin-top:24pt;">附：1．本申请书副本按被申请人人数提交；2．申请人身份证复印件；3．被申请人工商登记信息（企业信用公示系统打印）；4．证据清单及证据材料（见另页）。</p>' +
+  '<p style="font-size:10pt;color:#666;">说明：本文书由在线工具生成，提交前请核对全部信息，并根据当地仲裁委要求的格式调整。本工具不构成法律意见。</p>' +
+  '</body></html>';
+}
+
+function previewDoc() {
+  const box = document.getElementById('docResult');
+  box.style.display = 'block';
+  document.getElementById('docPreview').textContent = buildDocHtml()
+    .replace(/<style>[\s\S]*?<\/style>/, '')
+    .replace(/<[^>]+>/g, '')
+    .replace(/\n{3,}/g, '\n\n').trim();
+  box.scrollIntoView({behavior: 'smooth'});
+}
+
+function downloadWord(html, filename) {
+  const blob = new Blob(['\ufeff', html], { type: 'application/msword;charset=utf-8' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(a.href);
+}
+
+function generateDoc() {
+  if (!lastCalc) {
+    alert('请先在第一步完成计算，金额会自动写入申请书。');
+    return;
+  }
+  downloadWord(buildDocHtml(), '劳动仲裁申请书_' + (readVal('pName') || '草稿') + '.doc');
+}
+
+// ---------- 案情摘要（带去咨询用） ----------
+function generateBrief() {
+  const scenario = document.querySelector('input[name="scenario"]:checked').value;
+  const s = SCENARIOS[scenario];
+  const start = fmtDate(document.getElementById('workStart').value);
+  const end = fmtDate(document.getElementById('workEnd').value);
+  const salary = document.getElementById('avgSalary').value || '未填写';
+  const company = readVal('cName') || '＿＿＿';
+
+  // 读取勾选的证据
+  const got = [];
+  EVIDENCE.forEach((e, i) => { if (document.getElementById('ev' + i) && document.getElementById('ev' + i).checked) got.push(e[0]); });
+
+  let calcHtml = '<p>（尚未完成计算，请在工具中先完成第一步）</p>';
+  if (lastCalc) {
+    calcHtml = '<table border="1" cellspacing="0" cellpadding="6" style="border-collapse:collapse;font-size:10.5pt;">' +
+      '<tr><td>解除情形</td><td>' + s.label + '</td></tr>' +
+      '<tr><td>工作年限</td><td>' + lastCalc.yearsText + '（折算 ' + lastCalc.months + ' 个月）</td></tr>' +
+      '<tr><td>月平均工资基数</td><td>人民币 ' + lastCalc.base.toLocaleString('zh-CN') + ' 元' + (lastCalc.capped ? '（按当地社平工资3倍封顶）' : '') + '</td></tr>' +
+      '<tr><td>可主张金额</td><td><strong>人民币 ' + lastCalc.total.toLocaleString('zh-CN') + ' 元</strong>' + (s.type === '2N' ? '（2N，第87条）' : (s.type === 'N+1' ? '（N+1，第40条）' : '（N，第46/47条）')) + '</td></tr>' +
+      '</table>';
+  }
+
+  const wage = readNum('claimWage'), leave = readNum('claimLeave'), ot = readNum('claimOvertime');
+  let otherHtml = '<p>无其他金额主张。</p>';
+  const others = [];
+  if (wage) others.push('拖欠工资 ' + wage.toLocaleString('zh-CN') + ' 元');
+  if (leave) others.push('未休年休假工资 ' + leave.toLocaleString('zh-CN') + ' 元');
+  if (ot) others.push('加班费 ' + ot.toLocaleString('zh-CN') + ' 元');
+  if (others.length) otherHtml = '<p>' + others.join('；') + '。</p>';
+
+  const evidenceHtml = got.length
+    ? '<ul>' + got.map(e => '<li>' + e + '（已取得）</li>').join('') + '</ul>'
+    : '<p>暂未勾选，请先在工具中核对证据清单。</p>';
+
+  const html = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word">' +
+    '<head><meta charset="utf-8"><style>' +
+    'body{font-family:SimSun,serif;font-size:11pt;line-height:1.8;margin:2cm;}' +
+    'h1{text-align:center;font-size:15pt;font-family:SimHei,serif;}' +
+    'h2{font-size:12pt;font-family:SimHei,serif;margin:14pt 0 4pt;}' +
+    'table td{border:1px solid #999;padding:4pt 8pt;}' +
+    '</style></head><body>' +
+    '<h1>劳动纠纷咨询准备摘要</h1>' +
+    '<h2>一、基本情况</h2>' +
+    '<table border="1" cellspacing="0" cellpadding="6" style="border-collapse:collapse;font-size:10.5pt;">' +
+    '<tr><td>劳动者</td><td>' + (readVal('pName') || '＿＿＿') + '</td><td>用人单位</td><td>' + company + '</td></tr>' +
+    '<tr><td>入职日期</td><td>' + start + '</td><td>解除/终止日期</td><td>' + end + '</td></tr>' +
+    '<tr><td>解除前12个月平均工资</td><td colspan="3">人民币 ' + salary + ' 元/月（应发口径）</td></tr>' +
+    '<tr><td>解除情形（自述）</td><td colspan="3">' + s.label + (readVal('extraFacts') ? '。经过：' + readVal('extraFacts') : '') + '</td></tr>' +
+    '</table>' +
+    '<h2>二、我的计算与主张</h2>' + calcHtml +
+    '<h2>三、其他金额主张</h2>' + otherHtml +
+    '<h2>四、证据情况</h2>' + evidenceHtml +
+    '<h2>五、想咨询的问题</h2>' +
+    '<ol>' +
+    '<li>我主张的金额和情形定性是否准确？有没有漏掉的项目？</li>' +
+    '<li>现有证据是否足够？还缺什么、怎么补？</li>' +
+    '<li>接下来是继续协商、申请仲裁还是其他路径？各需要多久？</li>' +
+    '</ol>' +
+    '<p style="font-size:9pt;color:#666;margin-top:20pt;">本摘要由在线工具生成，供当事人准备咨询使用，不构成法律意见。</p>' +
+    '</body></html>';
+  downloadWord(html, '案情摘要_' + (readVal('pName') || '咨询准备') + '.doc');
+}
+</script>
+</body>
+</html>
